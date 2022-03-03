@@ -1,0 +1,35 @@
+
+.root {
+    -fx-background-color: #4f4f4f;
+}
+
+
+#Title{
+    -fx-font-size: 60;
+    -fx-font-family: "Palatino Linotype";
+    -fx-text-fill: white;
+    -fx-alignment: center;
+}
+
+#courselbl, #semesterlbl{
+    -fx-font-size: 32;
+    -fx-font-family: "Palatino Linotype";
+    -fx-text-fill: white;
+}
+
+.combo-box{
+    -fx-font-size: 18;
+    -fx-font-family: "Palatino Linotype";
+    -fx-text-fill: #4f4f4f;
+    -fx-background-color: white;
+    -fx-text-alignment: center;
+}
+
+
+.button{
+    -fx-background-color: linear-gradient(#ff0000, #810000);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+    -fx-text-font-family: Cambria;
+}

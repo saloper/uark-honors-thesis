@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uark.application.Controller">
+   <children>
+      <Label fx:id="Title" layoutY="51.0" prefHeight="17.0" prefWidth="1280.0" text="Pre Place Courses" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#showGoals" prefHeight="25.0" prefWidth="79.0" text="Back" />
+      <Button layoutX="1148.0" layoutY="643.0" mnemonicParsing="false" onAction="#solveModel" prefHeight="47.0" prefWidth="103.0" text="Get Plan" />
+      <Label fx:id="courselbl" alignment="CENTER" contentDisplay="CENTER" layoutX="225.0" layoutY="150.0" prefHeight="17.0" prefWidth="300.0" text="Select Course" textAlignment="CENTER" />
+      <Label fx:id="semesterlbl" alignment="CENTER" contentDisplay="CENTER" layoutX="625.0" layoutY="150.0" prefHeight="17.0" prefWidth="300.0" text="Select Semester" textAlignment="CENTER" />
+      <Button fx:id="add" layoutX="975.0" layoutY="190.0" mnemonicParsing="false" onAction="#addPrePlace" prefHeight="47.0" prefWidth="103.0" text="Add!" />
+      <Button fx:id="clear" layoutX="1100.0" layoutY="190.0" mnemonicParsing="false" onAction="#clearPrePlace" prefHeight="47.0" prefWidth="103.0" text="Clear All" />
+   </children>
+</AnchorPane>

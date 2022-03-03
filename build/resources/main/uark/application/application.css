@@ -1,0 +1,19 @@
+
+.root{
+    -fx-background-color: #4f4f4f;
+}
+
+.label{
+    -fx-font-size: 60;
+    -fx-font-family: "Palatino Linotype";
+    -fx-text-fill: white;
+    -fx-alignment: center;
+}
+
+.button{
+    -fx-background-color: linear-gradient(#ff0000, #810000);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+    -fx-text-font-family: Cambria;
+}

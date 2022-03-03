@@ -1,0 +1,35 @@
+
+.root {
+    -fx-background-color: #4f4f4f;
+}
+
+
+#Title{
+    -fx-font-size: 60;
+    -fx-font-family: "Palatino Linotype";
+    -fx-text-fill: white;
+    -fx-alignment: center;
+}
+
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color: white;
+    -fx-border-radius: 0;
+}
+
+.check-box .mark {
+    -fx-shape: "M1.73,12.91 8.1,19.28 22.79,4.59 22.79,1.59 8.1,16.28 1.73,9.91";
+}
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+.check-box:selected .box {
+    -fx-background-color: #ff0000;
+}
+.button{
+    -fx-background-color: linear-gradient(#ff0000, #810000);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+    -fx-text-font-family: Cambria;
+}
