@@ -44,51 +44,51 @@ public class Model {
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         //New Plan
         //ENGL
-        data.add(new Course("ENGL", 1013, 3, false, false));
-        data.add(new Course("ENGL", 1033, 4, false, false, new String[]{"ENGL 1013"}));
+        data.add(new Course("ENGL", 1013, 10, false, false));
+        data.add(new Course("ENGL", 1033, 7, false, false, new String[]{"ENGL 1013"}));
         //Arts and History
-        data.add(new Course("ECON", 2143, 3, false, false));
-        data.add(new Course("ACCT", 2403, 3, false, false));
-        data.add(new Course("HIST",  3, false, false));
-        data.add(new Course("FINEART",1,false,false));
-        data.add(new Course("HUMMAN",3,false,false));
-        data.add(new Course("SOCISCN 1st",  3,false,false));
-        data.add(new Course("SOCISCN 2nd",  3,false,false));
+        data.add(new Course("ECON", 2143, 9, false, false));
+        data.add(new Course("ACCT", 2403, 9, false, true));
+        data.add(new Course("HIST",  9, false, false));
+        data.add(new Course("FINEART",5,false,false));
+        data.add(new Course("HUMMAN",9,false,false));
+        data.add(new Course("SOCISCN 1st",  9,false,false));
+        data.add(new Course("SOCISCN 2nd",  9,false,false));
         //Math and Science and GNEG
-        data.add(new Course("MATH", 2554, 4, false, false));
-        data.add(new Course("MATH", 2564, 5, false, false,  new String[]{"MATH 2554"}));
-        data.add(new Course("MATH", 3083, 3, false, false, new String[]{"MATH 2554"}));
-        data.add(new Course("CHEM", 1103, 4, false, false));
-        data.add(new Course("PHYS", 2054, 4, false, false, new String[]{"MATH 2554"}));
-        data.add(new Course("GEOS", 1113, 3, false, false));
-        data.add(new Course("GNEG", 1111, 2, false, false, new String[]{}, new String[]{"MATH 2554"}));
-        data.add(new Course("GNEG", 1121, 2, false, false,  new String[]{}, new String[]{"MATH 2564", "GNEG 1121"}));
+        data.add(new Course("MATH", 2554, 20, false, false));
+        data.add(new Course("MATH", 2564, 20, false, false,  new String[]{"MATH 2554"}));
+        data.add(new Course("MATH ELE", 16, false, false, new String[]{"MATH 2554", "MATH 2564"}));
+        data.add(new Course("CHEM", 1103, 16, false, false));
+        data.add(new Course("PHYS", 2054, 19, false, false, new String[]{"MATH 2554"}));
+        data.add(new Course("GEOS", 1113, 9, false, false));
+        data.add(new Course("GNEG", 1111, 4, false, false, new String[]{}, new String[]{"MATH 2554"}));
+        data.add(new Course("GNEG", 1121, 4, false, false,  new String[]{}, new String[]{"MATH 2564", "GNEG 1121"}));
         //INEG
-        data.add(new Course("INEG", 2001, 2, false, false));
-        data.add(new Course("INEG", 2103, 3, false, false, new String[]{"MATH 2554"}));
-        data.add(new Course("INEG", 2214, 4, false, false, new String[]{}, new String[]{"INEG 2103"}));
-        data.add(new Course("INEG", 2314, 4, false, false, new String[]{}, new String[]{"INEG 2103"}));
-        data.add(new Course("INEG", 2223, 4, false, false, new String[]{"INEG 2214"}));
-        data.add(new Course("INEG", 2323, 3, false, false, new String[]{}, new String[]{"INEG 2103"}));
-        data.add(new Course("INEG", 2413, 3, false, false, new String[]{"MATH 2554"}));
-        data.add(new Course("INEG", 2613, 5, false, false, new String[]{"INEG 2214"}, new String[]{"INEG 2103"}));
-        data.add(new Course("INEG", 3333, 4, false, false,  new String[]{"INEG 2223", "INEG 2314", "INEG 2323"}));
-        data.add(new Course("INEG", 3443, 3, false, false));
-        data.add(new Course("INEG", 3543, 3, false, false, new String[]{"INEG 2413"}, new String[]{"INEG 2613"}));
-        data.add(new Course("INEG", 3624, 3, false, false, new String[]{"INEG 2223", "INEG 2314", "INEG 2323"}, new String[]{"INEG 2413"}));
-        data.add(new Course("INEG", 3533, 3, false, false, new String[]{"INEG 2613"}, new String[]{"INEG 2223"}));
-        data.add(new Course("INEG", 3553, 3, false, false, new String[]{"INEG 2314"}, new String[]{"INEG 2613"}));
-        data.add(new Course("INEG", 3714, 3, false, false,  new String[]{"INEG 2314"}));
-        data.add(new Course("INEG", 3833, 3, false, false,new String[]{}, new String[]{"INEG 2223"}));
-        data.add(new Course("INEG", 4433, 3, true, false, new String[]{"INEG 2413"}));
-        data.add(new Course("INEG", 4913, 3, true, false, new String[]{"INEG 2001", "INEG 2103", "INEG 3333", "INEG 3443", "INEG 3543", "INEG 3624"},
+        data.add(new Course("INEG", 2001, 5, false, false));
+        data.add(new Course("INEG", 2103, 16, false, false, new String[]{"MATH 2554"}));
+        data.add(new Course("INEG", 2214, 12, false, false, new String[]{}, new String[]{"INEG 2103"}));
+        data.add(new Course("INEG", 2314, 15, false, false, new String[]{}, new String[]{"INEG 2103"}));
+        data.add(new Course("INEG", 2223, 13, false, false, new String[]{"INEG 2214"}));
+        data.add(new Course("INEG", 2323, 15, false, false, new String[]{}, new String[]{"INEG 2103"}));
+        data.add(new Course("INEG", 2413, 15, false, false, new String[]{"MATH 2554"}));
+        data.add(new Course("INEG", 2613, 16, false, false, new String[]{"INEG 2214"}, new String[]{"INEG 2103"}));
+        data.add(new Course("INEG", 3333, 15, false, false,  new String[]{"INEG 2223", "INEG 2314", "INEG 2323"}));
+        data.add(new Course("INEG", 3443, 11, false, false));
+        data.add(new Course("INEG", 3543, 12, false, false, new String[]{"INEG 2413"}, new String[]{"INEG 2613"}));
+        data.add(new Course("INEG", 3624, 18, false, false, new String[]{"INEG 2223", "INEG 2314", "INEG 2323"}, new String[]{"INEG 2413"}));
+        data.add(new Course("INEG", 3533, 8, false, false, new String[]{"INEG 2613"}, new String[]{"INEG 2223"}));
+        data.add(new Course("INEG", 3553, 13, false, false, new String[]{"INEG 2314"}, new String[]{"INEG 2613"}));
+        data.add(new Course("INEG", 3714, 13, false, false,  new String[]{"INEG 2314"}));
+        data.add(new Course("INEG", 3833, 12, false, false,new String[]{}, new String[]{"INEG 2223"}));
+        data.add(new Course("INEG", 4433, 12, true, false, new String[]{"INEG 2413"}));
+        data.add(new Course("INEG", 4913, 6, true, false, new String[]{"INEG 2001", "INEG 2103", "INEG 3333", "INEG 3443", "INEG 3543", "INEG 3624"},
                 new String[]{"INEG 3533", "INEG 3553", "INEG 3714", "INEG 3833", "INEG 4433"}));
-        data.add(new Course("INEG", 4924, 3, false, true, new String[]{"INEG 3533", "INEG 3553", "INEG 3714", "INEG 3833", "INEG 4433", "INEG 4913"}));
+        data.add(new Course("INEG", 4924, 4, false, true, new String[]{"INEG 3533", "INEG 3553", "INEG 3714", "INEG 3833", "INEG 4433", "INEG 4913"}));
         //Tech Electives
-        data.add(new Course("IETECH 1st",  3,false,false));
-        data.add(new Course("IETECH 2nd",  3,false,false));
-        data.add(new Course("TECH 3rd",  3,false,false));
-        data.add(new Course("TECH 4th",  3,false,false));
+        data.add(new Course("IETECH 1st",  11,false,false, new String[]{"INEG 3333"}));
+        data.add(new Course("IETECH 2nd",  11,false,false, new String[]{"INEG 3333"}));
+        data.add(new Course("TECH 3rd",  11,false,false, new String[]{"INEG 3333"}));
+        data.add(new Course("TECH 4th",  11,false,false, new String[]{"INEG 3333"}));
 
     }
 

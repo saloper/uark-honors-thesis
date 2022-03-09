@@ -83,6 +83,25 @@ public class Course {
         this.enrolledSemester = 0;
         this.prePlace = 0;
     }
+    //Constructor for class with no pre or co reqs, or course number (placeholder classes)
+    Course(String name, int difficulty, boolean fallOnly, boolean springOnly,String[] pre){
+
+        preReq = new ArrayList<String>();
+        coReq = new ArrayList<String>();
+        this.department = name;
+        this.name = name;
+        this.num = 1003;
+        this.hours = 3;
+        this.difficulty = difficulty;
+        this.fallOnly = fallOnly;
+        this.springOnly= springOnly;
+        this.enrolledSemester = 0;
+        this.prePlace = 0;
+        for(int i = 0; i < pre.length; i++){
+            this.preReq.add(pre[i]);
+        }
+    }
+
 
     //Unmarshal Constructor
     Course(Json ob){
