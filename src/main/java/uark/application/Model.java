@@ -18,11 +18,11 @@ public class Model {
     int numSemesters = 0; //number of semesters desired
     int maxHours = 0; //max number of hours in a semester
     int minHours = 12;
-    String objectiveChoice = "Min Hardest Semester";
+    String objectiveChoice = "Min Max Difficulty Semester";
     boolean fallStart = true; //First Semester to start planning (fall or spring)
     MPSolver solver; //OR solver
+    MPObjective objective;
     MPVariable[][] enroll; //OR variables
-    MPVariable maxDiff;
     MPSolver.ResultStatus resultStatus; //holds the results of solver
 
 
@@ -255,46 +255,74 @@ public class Model {
         }
     }
 
-    public void equalDifficultyObjective(){
+    public void minMaxObjective(){
         //Create the decision variables for every course in the curriculum array
-        maxDiff = solver.makeNumVar(0, MPSolver.infinity(), "");
+        MPVariable maxDifficulty = solver.makeNumVar(0, MPSolver.infinity(), "");
         //Add the constraint
         for (int j = 1; j <= numSemesters; j++) {
-            MPConstraint maxDifficulty = solver.makeConstraint(0, MPSolver.infinity(), "");
-            maxDifficulty.setCoefficient(maxDiff, 1);
+            MPConstraint maxDiff = solver.makeConstraint(0, MPSolver.infinity(), "");
+            maxDiff.setCoefficient(maxDifficulty, 1);
             for (int i = 0; i < curriculum.size(); i++) {
-                maxDifficulty.setCoefficient(enroll[i][j], -curriculum.get(i).difficulty);
+                maxDiff.setCoefficient(enroll[i][j], -curriculum.get(i).difficulty);
             }
         }
         //Create the objective
-        MPObjective objective = solver.objective();
-        objective.setCoefficient(maxDiff, 1);
+        objective = solver.objective();
+        objective.setCoefficient(maxDifficulty, 1);
 
         objective.setMinimization();
     }
 
+    public void minLastYearObjective(){
+        objective = solver.objective();
+        for(int j = numSemesters - 1; j <= numSemesters; j++){
+            for(int i = 0; i < curriculum.size(); i++){
+                objective.setCoefficient(enroll[i][j], curriculum.get(i).difficulty);
+            }
+        }
+        objective.setMinimization();
+    }
+
+    public void minSemestersObjective(){
+        //Get rid of how many min hours
+        this.minHours = 0;
+
+        //Add new decision variable
+        MPVariable maxSemester = solver.makeNumVar(0, MPSolver.infinity(), "");
+
+        //Add a new constraint
+        for (int s = 1; s <= numSemesters; s++) {
+            for (int i = 0; i < curriculum.size(); i++) {
+                MPConstraint maxSem = solver.makeConstraint(0, MPSolver.infinity(), "");
+                maxSem.setCoefficient(maxSemester, 1);
+                maxSem.setCoefficient(enroll[i][s], -s);
+            }
+        }
+
+        //Add Objective
+        objective = solver.objective();
+        objective.setCoefficient(maxSemester, 1);
+        objective.setMinimization();
+
+
+    }
 
     public void addObjective(){
-        if(Objects.equals(this.objectiveChoice, "Min Hardest Semester")) {
-            this.equalDifficultyObjective();
+        if(Objects.equals(this.objectiveChoice, "Min Max Difficulty Semester")) {
+            this.minMaxObjective();
+        } else if(Objects.equals(this.objectiveChoice, "Min Difficulty of Last Year")) {
+            this.minLastYearObjective();
+        } else if(Objects.equals(this.objectiveChoice, "Min Semesters")) {
+            System.out.println("Min Semesters");
+            this.minSemestersObjective();
         }
-        //Create the objective
-//        MPObjective objective = solver.objective();
-//
-//        //Minimize difficulty in later semesters
-//        for(int i = 0; i < curriculum.size(); i++){
-//            for(int j = 1; j <= numSemesters; j++){
-//                objective.setCoefficient(enroll[i][j], j);
-//            }
-//        }
-//        objective.setMinimization();
     }
 
     public boolean solveModel(){
         resultStatus = solver.solve(); //Solve the Model
 
         if (resultStatus == MPSolver.ResultStatus.OPTIMAL || resultStatus == MPSolver.ResultStatus.FEASIBLE) {
-            System.out.println("Object Value: " + solver.objective().value());
+            System.out.println("Objective Value: " + solver.objective().value());
             for(int j = 1; j <= numSemesters; j++){
                 for(int i = 0; i < curriculum.size(); i++){
                     if(enroll[i][j].solutionValue() > 0.5){
@@ -302,8 +330,10 @@ public class Model {
                     }
                 }
             }
+            objective.clear();
             return true;
         } else {
+            objective.clear();
             return false; //No Solution
         }
     }
@@ -320,8 +350,8 @@ public class Model {
         }
         //Add the components of the model
         addDecisionVariables();
-        addConstraints();
         addObjective();
+        addConstraints();
         return(solveModel()); //Solve the model and return if it solved
     }
 }
