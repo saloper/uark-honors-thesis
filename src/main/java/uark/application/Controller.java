@@ -146,10 +146,10 @@ public class Controller {
     public void addGoalChoices(){
         //Declare Choices
         String[] semesterChoices = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11","12"};
-        String[] minHoursChoices = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"};
+        String[] minHoursChoices = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"};
         String[] maxHoursChoices = {"12", "13", "14", "15", "16", "17", "18", "19"};
         String[] startingSemesterChoices = {"Fall", "Spring"};
-        String[] objectiveOptions = {"Min Hardest Semester"};
+        String[] objectiveOptions = {"Min Max Difficulty Semester" , "Min Semesters", "Min Difficulty of Last Year"};
         //Add New Boxes
         ComboBox <String> semesters = new ComboBox<String>();
         ComboBox <String> minHours = new ComboBox<String>();
