@@ -74,40 +74,18 @@ public abstract class Json
 		return get(name).asBool();
 	}
 
-	public boolean getBool(int index)
-	{
-		return get(index).asBool();
-	}
 
 	public long getLong(String name)
 	{
 		return get(name).asLong();
 	}
 
-	public long getLong(int index)
-	{
-		return get(index).asLong();
-	}
-
-	public double getDouble(String name)
-	{
-		return get(name).asDouble();
-	}
-
-	public double getDouble(int index)
-	{
-		return get(index).asDouble();
-	}
 
 	public String getString(String name)
 	{
 		return get(name).asString();
 	}
 
-	public String getString(int index)
-	{
-		return get(index).asString();
-	}
 
 	public void add(String name, Json val)
 	{
@@ -139,21 +117,6 @@ public abstract class Json
 		this.asList().add(item);
 	}
 
-	public void add(boolean val)
-	{
-		this.asList().add(new JBool(val));
-	}
-
-	public void add(long val)
-	{
-		this.asList().add(new JLong(val));
-	}
-
-	public void add(double val)
-	{
-		this.asList().add(new JDouble(val));
-	}
-
 	public void add(String val)
 	{
 		this.asList().add(new JString(val));
@@ -169,13 +132,6 @@ public abstract class Json
 		return ((JLong)this).value;
 	}
 
-	public double asDouble()
-	{
-		if(this instanceof JDouble)
-			return ((JDouble)this).value;
-		else
-			return (double)((JLong)this).value;
-	}
 
 	public String asString()
 	{
@@ -290,30 +246,6 @@ public abstract class Json
 			String s = str.substring(pos, i);
 			pos = i;
 			return s;
-		}
-
-		String untilWhitespace()
-		{
-			int i = pos;
-			while(i < str.length() && str.charAt(i) > ' ')
-				i++;
-			String s = str.substring(pos, i);
-			pos = i;
-			return s;
-		}
-
-		String untilQuoteSensitive(char a, char b)
-		{
-			if(peek() == '"')
-			{
-				advance(1);
-				String s = "\"" + until('"') + "\"";
-				advance(1);
-				until(a, b);
-				return s;
-			}
-			else
-				return until(a, b);
 		}
 
 		String whileReal()

@@ -12,6 +12,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -35,7 +37,6 @@ public class Controller {
     //Class Variables to Hold User Selections
     public static String tmpCourse = "";
     public static String tmpSemester = "";
-    public static int prePlaceCounter = 0;
 
     //-------------------------------------------------------------------------------------------------------
     //Scene Switching Methods
@@ -260,7 +261,6 @@ public class Controller {
         if(!Objects.equals(tmpCourse, "") && !Objects.equals(tmpSemester, "")){
             if(model.curriculum.get(model.lookup(tmpCourse)).prePlace != parseInt(tmpSemester)){
                 model.curriculum.get(model.lookup(tmpCourse)).prePlace = parseInt(tmpSemester);
-                prePlaceCounter++;
                 Alert added = new Alert(Alert.AlertType.INFORMATION);
                 added.setTitle("Constraint Added!");
                 added.setHeaderText("Course: " + tmpCourse + " has been added to semester " + tmpSemester);
@@ -283,7 +283,6 @@ public class Controller {
         for(int i = 0; i < model.curriculum.size(); i++){
             model.curriculum.get(i).prePlace = 0;
         }
-        prePlaceCounter = 0;
         Alert added = new Alert(Alert.AlertType.WARNING);
         added.setTitle("Constraints Cleared!");
         added.setHeaderText("All Classes have been cleaed!");
