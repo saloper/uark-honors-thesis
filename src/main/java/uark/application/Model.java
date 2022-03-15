@@ -62,9 +62,9 @@ public class Model {
         data.add(new Course("PHYS", 2054, 19, false, false, new String[]{"MATH 2554"}));
         data.add(new Course("GEOS", 1113, 9, false, false));
         data.add(new Course("GNEG", 1111, 4, false, false, new String[]{}, new String[]{"MATH 2554"}));
-        data.add(new Course("GNEG", 1121, 4, false, false,  new String[]{}, new String[]{"MATH 2564", "GNEG 1121"}));
+        data.add(new Course("GNEG", 1121, 4, false, false,  new String[]{}, new String[]{"MATH 2564"}));
         //INEG
-        data.add(new Course("INEG", 2001, 5, false, false));
+        data.add(new Course("INEG", 2001, 5, true, false));
         data.add(new Course("INEG", 2103, 16, false, false, new String[]{"MATH 2554"}));
         data.add(new Course("INEG", 2214, 12, false, false, new String[]{}, new String[]{"INEG 2103"}));
         data.add(new Course("INEG", 2314, 15, false, false, new String[]{}, new String[]{"INEG 2103"}));
@@ -287,6 +287,17 @@ public class Model {
         //Get rid of how many min hours
         this.minHours = 0;
 
+        //Create the decision variables for every course in the curriculum array
+        MPVariable maxDifficulty = solver.makeNumVar(0, MPSolver.infinity(), "");
+        //Add the constraint
+        for (int j = 1; j <= numSemesters; j++) {
+            MPConstraint maxDiff = solver.makeConstraint(0, MPSolver.infinity(), "");
+            maxDiff.setCoefficient(maxDifficulty, 1);
+            for (int i = 0; i < curriculum.size(); i++) {
+                maxDiff.setCoefficient(enroll[i][j], -curriculum.get(i).difficulty);
+            }
+        }
+
         //Add new decision variable
         MPVariable maxSemester = solver.makeNumVar(0, MPSolver.infinity(), "");
 
@@ -301,7 +312,8 @@ public class Model {
 
         //Add Objective
         objective = solver.objective();
-        objective.setCoefficient(maxSemester, 1);
+        objective.setCoefficient(maxSemester, 100);
+        objective.setCoefficient(maxDifficulty, 1);
         objective.setMinimization();
 
 
@@ -327,6 +339,7 @@ public class Model {
                 for(int i = 0; i < curriculum.size(); i++){
                     if(enroll[i][j].solutionValue() > 0.5){
                         curriculum.get(i).enrolledSemester = j; //write the results to the course
+//                        System.out.println(curriculum.get(i).name + " " + curriculum.get(i).enrolledSemester);
                     }
                 }
             }
