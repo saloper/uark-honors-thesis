@@ -30,12 +30,12 @@ public class Model {
     Model(){
         curriculum = new ArrayList<Course>();
         data = new ArrayList<Course>();
-//        this.loadData();
+        this.loadData();
         numSemesters = 8; //Create with a number larger than user's input (allocate enough varibles)
         minHours = 12;
         maxHours = 16;
         //Load Courses
-        this.loadCourses(Json.load("data/courses.json"));
+//        this.loadCourses(Json.load("data/courses.json"));
 
     }
 
@@ -62,7 +62,7 @@ public class Model {
         data.add(new Course("PHYS", 2054, 19, false, false, new String[]{"MATH 2554"}));
         data.add(new Course("GEOS", 1113, 9, false, false));
         data.add(new Course("GNEG", 1111, 4, false, false, new String[]{}, new String[]{"MATH 2554"}));
-        data.add(new Course("GNEG", 1121, 4, false, false,  new String[]{}, new String[]{"MATH 2564"}));
+        data.add(new Course("GNEG", 1121, 4, false, false,  new String[]{"GNEG 1111"}, new String[]{"MATH 2564"}));
         //INEG
         data.add(new Course("INEG", 2001, 5, true, false));
         data.add(new Course("INEG", 2103, 16, false, false, new String[]{"MATH 2554"}));
@@ -81,9 +81,9 @@ public class Model {
         data.add(new Course("INEG", 3714, 13, false, false,  new String[]{"INEG 2314"}));
         data.add(new Course("INEG", 3833, 12, false, false,new String[]{}, new String[]{"INEG 2223"}));
         data.add(new Course("INEG", 4433, 12, true, false, new String[]{"INEG 2413"}));
-        data.add(new Course("INEG", 4913, 6, true, false, new String[]{"INEG 2001", "INEG 2103", "INEG 3333", "INEG 3443", "INEG 3543", "INEG 3624"},
+        data.add(new Course("INEG", 4913, 17, true, false, new String[]{"INEG 2001", "INEG 2103", "INEG 3333", "INEG 3443", "INEG 3543", "INEG 3624"},
                 new String[]{"INEG 3533", "INEG 3553", "INEG 3714", "INEG 3833", "INEG 4433"}));
-        data.add(new Course("INEG", 4924, 4, false, true, new String[]{"INEG 3533", "INEG 3553", "INEG 3714", "INEG 3833", "INEG 4433", "INEG 4913"}));
+        data.add(new Course("INEG", 4924, 17, false, true, new String[]{"INEG 3533", "INEG 3553", "INEG 3714", "INEG 3833", "INEG 4433", "INEG 4913"}));
         //Tech Electives
         data.add(new Course("IETECH 1st",  11,false,false, new String[]{"INEG 3333"}));
         data.add(new Course("IETECH 2nd",  11,false,false, new String[]{"INEG 3333"}));
@@ -339,7 +339,7 @@ public class Model {
                 for(int i = 0; i < curriculum.size(); i++){
                     if(enroll[i][j].solutionValue() > 0.5){
                         curriculum.get(i).enrolledSemester = j; //write the results to the course
-//                        System.out.println(curriculum.get(i).name + " " + curriculum.get(i).enrolledSemester);
+                        System.out.println(curriculum.get(i).name + " " + curriculum.get(i).enrolledSemester + " " + curriculum.get(i).difficulty);
                     }
                 }
             }
