@@ -30,12 +30,12 @@ public class Model {
     Model(){
         curriculum = new ArrayList<Course>();
         data = new ArrayList<Course>();
-        this.loadData();
+//        this.loadData();
         numSemesters = 8; //Create with a number larger than user's input (allocate enough varibles)
         minHours = 12;
         maxHours = 16;
         //Load Courses
-//        this.loadCourses(Json.load("data/courses.json"));
+        this.loadCourses(Json.load("data/courses.json"));
 
     }
 
@@ -334,12 +334,12 @@ public class Model {
         resultStatus = solver.solve(); //Solve the Model
 
         if (resultStatus == MPSolver.ResultStatus.OPTIMAL || resultStatus == MPSolver.ResultStatus.FEASIBLE) {
-            System.out.println("Objective Value: " + solver.objective().value());
+//            System.out.println("Objective Value: " + solver.objective().value());
             for(int j = 1; j <= numSemesters; j++){
                 for(int i = 0; i < curriculum.size(); i++){
                     if(enroll[i][j].solutionValue() > 0.5){
                         curriculum.get(i).enrolledSemester = j; //write the results to the course
-                        System.out.println(curriculum.get(i).name + " " + curriculum.get(i).enrolledSemester + " " + curriculum.get(i).difficulty);
+//                        System.out.println(curriculum.get(i).name + " " + curriculum.get(i).enrolledSemester + " " + curriculum.get(i).difficulty);
                     }
                 }
             }
